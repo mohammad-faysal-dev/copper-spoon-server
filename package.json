@@ -21,12 +21,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"npx tsx watch src/server.ts",
+    "dev": "npx tsx watch src/server.ts",
     "seed": "npx  tsx src/scripts/seedAdmin.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
-  "description": ""
+  "description": "",
+  "allowScripts": {
+    "@prisma/engines@7.10.0": true,
+    "esbuild@0.28.2": true,
+    "prisma@7.10.0": true
+  }
 }
