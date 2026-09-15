@@ -1,0 +1,18 @@
+model User {
+    id                String           @id
+    name              String
+    email             String           @unique
+    emailVerification Boolean          @default(false)
+    image             String?
+    role              String           @default("CUSTOMER")
+    status            String           @default("ACTIVE")
+    phone             String?
+    address           String?
+    createdAt         DateTime         @default(now())
+    updatedAt         DateTime         @updatedAt
+    sessions          Session[]
+    accounts          Account[]
+    providerProfile   ProviderProfile?
+    orders            Order[]
+    review            Review[]
+}

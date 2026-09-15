@@ -1,0 +1,26 @@
+model Order {
+    id              String          @id @default(cuid())
+    customerId      String
+    providerId      String
+    deliveryAddress String
+    paymentMethod   String          @default("CASH_ON_DELIVERY")
+    status          String          @default("PENDING")
+    createdAt       DateTime        @default(now())
+    updatedAt       DateTime        @updatedAt
+    customer        User            @relation(fields: [customerId], references: [id])
+    provider        ProviderProfile @relation(fields: [providerId], references: [id])
+    items           OrderItem[]
+
+    @@index([customerId])
+    @@index([providerId])
+}
+
+model OrderItem {
+    id       String @id @default(cuid())
+    orderId  String
+    mealId   String
+    quantity Int
+    price    Float
+    order    Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+    meal     Meal   @relation(fields: [mealId], references: [id])
+}
