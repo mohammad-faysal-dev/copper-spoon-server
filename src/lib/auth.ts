@@ -22,13 +22,24 @@ export const auth = betterAuth({
   user: {
     additionalFields: {
       role: {
-        type: "string",
+        type: ["CUSTOMER", "PROVIDER", "ADMIN"],
+        required: false,
         defaultValue: "CUSTOMER",
+        input: false,
       },
       status: {
-        type: "string",
+        type: ["ACTIVE", "SUSPENDED"],
         required: true,
         defaultValue: "ACTIVE",
+        input: false,
+      },
+      phone: {
+        type: "string",
+        required: false,
+      },
+      address: {
+        type: "string",
+        required: false,
       },
     },
   },
