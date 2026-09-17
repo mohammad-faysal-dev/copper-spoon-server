@@ -1,3 +1,4 @@
+import { Prisma, User } from "../../../generated/prisma/client"
 import { prisma } from "../../lib/prisma"
 
 const getMyProfile = async (userId: string) => {
@@ -20,9 +21,19 @@ const getMyProfile = async (userId: string) => {
     return result
 }
 
-const updateMyProfile = async (userId: string) => {
-
+const updateMyProfile = async (userId: string, data: Partial<User>) => {
+    const userData = await prisma.user.update({
+        where: {
+            id: userId
+        },
+        data,
+        select: {
+            id: true
+        }
+    })
+    return userData
 }
 export const userService = {
-    getMyProfile
+    getMyProfile,
+    updateMyProfile
 }

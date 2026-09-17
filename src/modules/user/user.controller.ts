@@ -12,7 +12,7 @@ const getMyProfile = async (req: Request, res: Response) => {
 const updateMyProfile = async (req: Request, res: Response) => {
     try {
         const { userId } = req.params
-        const result = await userService.updateMyProile(userId as string, req.body)
+        const result = await userService.updateMyProfile(userId as string, req.body)
         res.status(200).json(result)
     } catch (error) {
         res.status(400).json({
