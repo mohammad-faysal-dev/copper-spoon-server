@@ -15,7 +15,7 @@ const createProfile = async (req: Request, res: Response, next: NextFunction) =>
 const getMyProfile = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { providerId } = req.params
-        const result = await ProviderService.getMyProfile(providerId)
+        const result = await ProviderService.getMyProfile(providerId as string)
         res.status(200).json(result)
     }
     catch (error) {

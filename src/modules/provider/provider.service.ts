@@ -19,7 +19,7 @@ const createProfile = async (providerId: string, data: {
 const getMyProfile = async (providerId: string) => {
     const result = await prisma.providerProfile.findUnique({
         where: {
-            id: providerId
+            userId: providerId
         },
         include: {
             meals: true
