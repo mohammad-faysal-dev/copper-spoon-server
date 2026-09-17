@@ -27,8 +27,20 @@ const getMyProfile = async (providerId: string) => {
     })
     return result
 }
+const getAllProviders = async () => {
+    const result = await prisma.providerProfile.findMany({
+        include: {
+            meals: true
+        },
+        orderBy: {
+            createdAt: "desc",
+        }
+    })
+    return result
+}
 
 export const ProviderService = {
     createProfile,
-    getMyProfile
+    getMyProfile,
+    getAllProviders
 }
