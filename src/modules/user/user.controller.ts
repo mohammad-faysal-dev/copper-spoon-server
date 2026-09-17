@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express";
 
-const getProfile = async (req: Request, res: Response) => {
+const getMyProfile = async (req: Request, res: Response) => {
     const user = await userService.getMyProfile(req.user?.id);
     res.json({
         success: true,
@@ -9,5 +9,5 @@ const getProfile = async (req: Request, res: Response) => {
     })
 }
 export const userController = {
-    getProfile
+    getMyProfile
 }
