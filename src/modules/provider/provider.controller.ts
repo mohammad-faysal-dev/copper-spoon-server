@@ -23,7 +23,18 @@ const getMyProfile = async (req: Request, res: Response, next: NextFunction) => 
     }
 }
 
+const getAllProviders = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await ProviderService.getAllProviders()
+        res.status(200).json(result)
+    }
+    catch (error) {
+        next(error)
+    }
+}
+
 export const providerController = {
     createProfile,
-    getMyProfile
+    getMyProfile,
+    getAllProviders
 }
