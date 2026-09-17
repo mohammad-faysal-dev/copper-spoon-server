@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "providerProfile" ALTER COLUMN "description" DROP NOT NULL,
+ALTER COLUMN "phone" DROP NOT NULL,
+ALTER COLUMN "address" DROP NOT NULL,
+ALTER COLUMN "image" DROP NOT NULL;
