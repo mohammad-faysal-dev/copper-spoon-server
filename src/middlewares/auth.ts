@@ -1,4 +1,3 @@
-import { success } from "better-auth";
 import { NextFunction, Request, Response } from "express";
 import { auth as betterAuth } from "../lib/auth";
 export enum UserRole {
@@ -41,7 +40,7 @@ const auth = (...roles: UserRole[]) => {
         id: session.user.id,
         email: session.user.email,
         name: session.user.name,
-        role: session.user.role,
+        role: session.user.role ?? "CUSTOMER",
         emailVerified: session.user.emailVerified,
       };
       if (roles.length && !roles.includes(req.user.role as UserRole)) {
