@@ -10,12 +10,15 @@ const getMyProfile = async (req: Request, res: Response) => {
     })
 }
 const updateMyProfile = async (req: Request, res: Response) => {
-    const result = await userService.updateMyProile(req.params.id)
-    res.json({
-        success: true,
-        message: "Profile updated Sucessfully",
-        data: result
-    })
+    try {
+        const { userId } = req.params
+        const result = await userService.updateMyProile(userId as string, req.body)
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(400).json({
+            message: "failed to update user"
+        })
+    }
 }
 export const userController = {
     getMyProfile,

@@ -19,6 +19,10 @@ const getMyProfile = async (userId: string) => {
     })
     return result
 }
+
+const updateMyProfile = async (userId: string) => {
+
+}
 export const userService = {
     getMyProfile
 }
