@@ -28,7 +28,22 @@ const getAllCategories = async (req: Request, res: Response, next: NextFunction)
     }
 }
 
+const getCategoryById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { categoryId } = req.params
+        const category = await CategoryService.getCategoryById(categoryId)
+        res.status(200).json({
+            success: true,
+            data: category
+        })
+    }
+    catch (e) {
+        next(e)
+    }
+}
+
 export const CategoryController = {
     createCategory,
-    getAllCategories
+    getAllCategories,
+    getCategoryById
 }
