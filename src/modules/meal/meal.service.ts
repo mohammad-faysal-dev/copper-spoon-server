@@ -59,8 +59,37 @@ const getMealById = async (mealId: string) => {
     return result
 }
 
+const deleteMeal = async (mealId: string, userId: string,) => {
+    const provider = await prisma.providerProfile.findUnique({
+        where: {
+            id: userId
+        }
+    })
+    if (!provider) {
+        throw new Error("Provider profile not found");
+    }
+
+    const meal = await prisma.meal.findFirst({
+        where: {
+            id: mealId,
+            providerId: provider.id
+        }
+    })
+    if (!meal) {
+        throw new Error("Meal not found");
+    }
+
+    return await prisma.meal.delete({
+        where: {
+            id: mealId
+        }
+    })
+
+}
+
 export const MealService = {
     createMeal,
     getAllMeals,
-    getMealById
+    getMealById,
+    deleteMeal
 }

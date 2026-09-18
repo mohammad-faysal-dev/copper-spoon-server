@@ -35,8 +35,9 @@ const getMealById = async (req: Request, res: Response, next: NextFunction) => {
 
 const deleteMeal = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        const user = req.user
         const { mealId } = req.body
-        const meal = await MealService.deleteMeal(mealId as string)
+        const meal = await MealService.deleteMeal(mealId as string, user?.id as string)
         res.status(200).json(meal)
     }
     catch (e) {
