@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { MealService } from "./meal.service";
 
 const createMeal = async (req: Request, res: Response, next: NextFunction) => {
     try {
