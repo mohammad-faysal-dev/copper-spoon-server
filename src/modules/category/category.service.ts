@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma"
-import { CreateCategoryPayload } from "./category.type"
+import { CreateCategoryPayload, UpdateCategoryPayload } from "./category.type"
 
 const createCategory = async (data: CreateCategoryPayload) => {
     const result = await prisma.category.create({
@@ -28,8 +28,18 @@ const getCategoryById = async (categoryId: string) => {
     })
     return result
 }
+const updateCategory = async (categoryId: string, data: UpdateCategoryPayload) => {
+    const result = await prisma.category.update({
+        where: {
+            id: categoryId
+        },
+        data
+    })
+    return result
+}
 export const CategoryService = {
     createCategory,
     getAllCategories,
-    getCategoryById
+    getCategoryById,
+    updateCategory
 }
