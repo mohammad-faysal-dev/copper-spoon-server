@@ -12,6 +12,17 @@ const createMeal = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
+const getAllMeals = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const meal = await MealService.getAllMeals()
+        res.status(200).json(meal)
+    }
+    catch (e) {
+        next(e)
+    }
+}
+
 export const MealController = {
-    createMeal
+    createMeal,
+    getAllMeals
 }
