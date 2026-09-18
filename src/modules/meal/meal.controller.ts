@@ -24,8 +24,8 @@ const getAllMeals = async (req: Request, res: Response, next: NextFunction) => {
 
 const getMealById = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const user = req.user
-        const meal = await MealService.getMealById(user?.id as string)
+        const { mealId } = req.params
+        const meal = await MealService.getMealById(mealId as string)
         res.status(200).json(meal)
     }
     catch (e) {

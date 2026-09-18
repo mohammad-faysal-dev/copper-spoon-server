@@ -35,7 +35,32 @@ const getAllMeals = async () => {
     return result
 }
 
+const getMealById = async (mealId: string) => {
+    const result = await prisma.meal.findUnique({
+        where: {
+            id: mealId
+        },
+        include: {
+            category: true,
+            provider: true,
+            reviews: {
+                include: {
+                    customer: {
+                        select: {
+                            id: true,
+                            name: true,
+                            image: true,
+                        }
+                    }
+                }
+            }
+        },
+    })
+    return result
+}
+
 export const MealService = {
     createMeal,
-    getAllMeals
+    getAllMeals,
+    getMealById
 }
