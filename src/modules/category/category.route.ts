@@ -4,8 +4,9 @@ import express from "express"
 const router = express.Router()
 router.get("/", CategoryController.getAllCategories)
 
-router.get("/:categoryId", CategoryController.getCategoryById)
 router.post("/", CategoryController.createCategory)
+router.get("/:categoryId", CategoryController.getCategoryById)
+router.patch("/:categoryId", CategoryController.updateCategory)
 
 
 export const categoryRoute = router 
