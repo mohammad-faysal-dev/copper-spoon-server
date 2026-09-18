@@ -62,7 +62,7 @@ const getMealById = async (mealId: string) => {
 const deleteMeal = async (mealId: string, userId: string,) => {
     const provider = await prisma.providerProfile.findUnique({
         where: {
-            id: userId
+            userId
         }
     })
     if (!provider) {
