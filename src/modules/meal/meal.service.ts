@@ -18,6 +18,24 @@ const createMeal = async (userId: string, data: CreateMealPayload) => {
     })
     return result
 }
+
+const getAllMeals = async () => {
+    const result = await prisma.meal.findMany({
+        where: {
+            isAvailable: true
+        },
+        include: {
+            category: true,
+            provider: true
+        },
+        orderBy: {
+            createdAt: "desc"
+        }
+    })
+    return result
+}
+
 export const MealService = {
-    createMeal
+    createMeal,
+    getAllMeals
 }
