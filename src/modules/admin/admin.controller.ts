@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { AdminService } from "./admin.service";
 
 const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -10,6 +11,6 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-export const adminController = {
+export const AdminController = {
     getAllUsers
 }

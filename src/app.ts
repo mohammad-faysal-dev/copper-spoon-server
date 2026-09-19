@@ -8,6 +8,7 @@ import { melaRoute } from "./modules/meal/meal.route";
 import { categoryRoute } from "./modules/category/category.route";
 import { reviewRouter } from "./modules/review/review.route";
 import { orderRouter } from "./modules/order/order.route";
+import { adminRoute } from "./modules/admin/admin.route";
 
 
 const app: Application = express();
@@ -27,6 +28,7 @@ app.use("/api/meals", melaRoute)
 app.use("/api/category", categoryRoute)
 app.use("/api/review", reviewRouter)
 app.use("/api/roders", orderRouter)
+app.use("/api/admin", adminRoute)
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
