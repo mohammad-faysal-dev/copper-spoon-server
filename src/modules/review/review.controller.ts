@@ -41,7 +41,19 @@ const updateReview = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const user = req.user
         const { reviewId } = req.params
-        const review = await ReviewService.updateReview(reviewId, user?.id, req.body)
+        const review = await ReviewService.updateReview(reviewId as string, user?.id as string, req.body)
+        res.status(200).json(review)
+    }
+    catch (e) {
+        next(e)
+    }
+}
+
+const deleteReview = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = req.user
+        const { reviewId } = req.params
+        const review = await ReviewService.deleteReview(user?.id as string, reviewId as string)
         res.status(200).json(review)
     }
     catch (e) {
@@ -53,5 +65,6 @@ export const ReviewController = {
     createReview,
     getAllReviews,
     getReviewById,
-    updateReview
+    updateReview,
+    deleteReview
 }
