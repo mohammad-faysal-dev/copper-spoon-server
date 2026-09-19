@@ -37,8 +37,21 @@ const getReviewById = async (req: Request, res: Response, next: NextFunction) =>
     }
 }
 
+const updateReview = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = req.user
+        const { reviewId } = req.params
+        const review = await ReviewService.updateReview(reviewId, user?.id, req.body)
+        res.status(200).json(review)
+    }
+    catch (e) {
+        next(e)
+    }
+}
+
 export const ReviewController = {
     createReview,
     getAllReviews,
-    getReviewById
+    getReviewById,
+    updateReview
 }

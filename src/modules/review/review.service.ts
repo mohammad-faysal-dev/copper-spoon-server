@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma"
-import { CreateReviewPayload } from "./review.type"
+import { CreateReviewPayload, UpdateReviewPayload } from "./review.type"
 
 const createReview = async (customerId: string, data: CreateReviewPayload) => {
     const result = await prisma.review.create({
@@ -39,8 +39,20 @@ const getReviewById = async (reviewId: string) => {
     return result
 }
 
+const updateReview = async (reviewId: string, customerId: string, data: UpdateReviewPayload) => {
+    const result = await prisma.review.update({
+        where: {
+            id: reviewId,
+            customerId
+        },
+        data
+    })
+    return result
+}
+
 export const ReviewService = {
     createReview,
     getAllReviews,
-    getReviewById
+    getReviewById,
+    updateReview
 }
