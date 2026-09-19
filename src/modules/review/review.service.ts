@@ -50,9 +50,28 @@ const updateReview = async (reviewId: string, customerId: string, data: UpdateRe
     return result
 }
 
+const deleteReview = async (reviewId: string, customerId: string) => {
+    const customer = await prisma.review.findFirst({
+        where: {
+            id: reviewId,
+            customerId
+        }
+    })
+    if (!customer) {
+        throw new Error("Customer profile not found");
+    }
+
+    return await prisma.meal.delete({
+        where: {
+            id: reviewId
+        }
+    })
+
+}
 export const ReviewService = {
     createReview,
     getAllReviews,
     getReviewById,
-    updateReview
+    updateReview,
+    deleteReview
 }
