@@ -29,7 +29,7 @@ const getAllReviews = async (req: Request, res: Response, next: NextFunction) =>
 const getReviewById = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { reviewId } = req.params
-        const review = await ReviewService.getReviewById(reviewId)
+        const review = await ReviewService.getReviewById(reviewId as string)
         res.status(200).json(review)
     }
     catch (e) {
