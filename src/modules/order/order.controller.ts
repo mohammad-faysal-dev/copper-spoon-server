@@ -22,8 +22,20 @@ const getMyOrders = async (req: Request, res: Response, next: NextFunction) => {
         next(e)
     }
 }
+const getOrderById = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const user = req.user
+        const { orderId } = req.params
+        const order = await OrderService.getOrderById(user?.id, orderId)
+        res.status(200).json(order)
+    }
+    catch (e) {
+        next(e)
+    }
+}
 
 export const orderController = {
     createOrder,
-    getMyOrders
+    getMyOrders,
+    getOrderById
 }
