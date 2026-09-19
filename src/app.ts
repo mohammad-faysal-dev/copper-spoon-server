@@ -6,6 +6,7 @@ import { userRouter } from "./modules/user/user.route";
 import { providerRoute } from "./modules/provider/provider.route";
 import { melaRoute } from "./modules/meal/meal.route";
 import { categoryRoute } from "./modules/category/category.route";
+import { reviewRouter } from "./modules/review/review.route";
 
 
 const app: Application = express();
@@ -23,6 +24,7 @@ app.use("/api/users", userRouter)
 app.use("/api/provider", providerRoute)
 app.use("/api/meals", melaRoute)
 app.use("/api/category", categoryRoute)
+app.use("/api/review", reviewRouter)
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
