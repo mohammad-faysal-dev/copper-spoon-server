@@ -6,6 +6,7 @@ import auth, { UserRole } from "../../middlewares/auth";
 const router = express.Router()
 
 router.get("/:reviewId", auth(UserRole.CUSTOMER), ReviewController.getReviewById)
+router.patch("/:reviewId", auth(UserRole.CUSTOMER), ReviewController.updateReview)
 router.get("/", auth(UserRole.CUSTOMER), ReviewController.getAllReviews)
 router.post("/", auth(UserRole.CUSTOMER), ReviewController.createReview)
 
