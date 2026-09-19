@@ -12,6 +12,17 @@ const createReview = async (req: Request, res: Response, next: NextFunction) => 
     }
 }
 
+const getAllReviews = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const review = await ReviewService.getAllReviews()
+        res.status(200).json(review)
+    }
+    catch (e) {
+        next(e)
+    }
+}
+
 export const ReviewController = {
-    createReview
+    createReview,
+    getAllReviews
 }
