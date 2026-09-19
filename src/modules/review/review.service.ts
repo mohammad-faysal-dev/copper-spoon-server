@@ -61,7 +61,7 @@ const deleteReview = async (reviewId: string, customerId: string) => {
         throw new Error("Customer profile not found");
     }
 
-    return await prisma.meal.delete({
+    return await prisma.review.delete({
         where: {
             id: reviewId
         }

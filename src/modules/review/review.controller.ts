@@ -53,7 +53,7 @@ const deleteReview = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const user = req.user
         const { reviewId } = req.params
-        const review = await ReviewService.deleteReview(user?.id as string, reviewId as string)
+        const review = await ReviewService.deleteReview(reviewId as string, user?.id as string)
         res.status(200).json(review)
     }
     catch (e) {
