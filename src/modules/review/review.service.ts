@@ -21,7 +21,26 @@ const getAllReviews = async () => {
 
 }
 
+const getReviewById = async (reviewId: string) => {
+    const result = await prisma.review.findUnique({
+        where: {
+            id: reviewId
+        },
+        include: {
+            customer: {
+                select: {
+                    id: true,
+                    name: true,
+                    image: true,
+                }
+            }
+        }
+    })
+    return result
+}
+
 export const ReviewService = {
     createReview,
-    getAllReviews
+    getAllReviews,
+    getReviewById
 }
