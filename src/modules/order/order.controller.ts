@@ -46,10 +46,20 @@ const updateOrderStatus = async (req: Request, res: Response, next: NextFunction
     }
 }
 
+const getAllOrders = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const order = await OrderService.getAllOrders()
+        res.status(200).json(order)
+    }
+    catch (e) {
+        next(e)
+    }
+}
 
 export const OrderController = {
     createOrder,
     getMyOrders,
     getOrderById,
-    updateOrderStatus
+    updateOrderStatus,
+    getAllOrders
 }

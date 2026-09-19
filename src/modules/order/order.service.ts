@@ -38,7 +38,7 @@ const getMyOrders = async (customerId: string) => {
 }
 
 const getOrderById = async (customerId: string, orderId: string) => {
-    const result = await prisma.order.findUnique({
+    const result = await prisma.order.findFirst({
         where: {
             customerId,
             id: orderId
@@ -65,6 +65,8 @@ const updateOrderStatus = async (orderId: string, data: UpdateOrderStatusPayload
     })
     return result
 }
+
+
 
 export const OrderService = {
     createOrder,
