@@ -14,7 +14,8 @@ const createOrder = async (req: Request, res: Response, next: NextFunction) => {
 
 const getMyOrders = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const order = await OrderService.getMyOrders()
+        const user = req.user
+        const order = await OrderService.getMyOrders(user?.id as string)
         res.status(200).json(order)
     }
     catch (e) {

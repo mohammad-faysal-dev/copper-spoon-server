@@ -26,7 +26,7 @@ app.use("/api/provider", providerRoute)
 app.use("/api/meals", melaRoute)
 app.use("/api/category", categoryRoute)
 app.use("/api/review", reviewRouter)
-app.use("/api/rorders", orderRouter)
+app.use("/api/roders", orderRouter)
 app.get("/", (req, res) => {
   res.send("Hello world");
 });

@@ -20,6 +20,23 @@ const createOrder = async (userId: string, data: CreateOrderPayload) => {
     })
     return result
 }
+
+const getMyOrders = async (customerId: string) => {
+    const result = await prisma.order.findMany({
+        where: {
+            customerId
+        },
+        include: {
+            items: {
+                include: {
+                    meal: true
+                }
+            }
+        }
+    })
+    return result
+}
 export const OrderService = {
-    createOrder
+    createOrder,
+    getMyOrders
 }
