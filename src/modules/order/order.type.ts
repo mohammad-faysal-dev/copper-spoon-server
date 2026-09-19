@@ -10,3 +10,7 @@ export interface CreateOrderPayload {
     paymentMethod: string;
     items: CreateOrderItemPayload[];
 }
+
+export interface UpdateOrderStatusPayload {
+    status: string;
+}

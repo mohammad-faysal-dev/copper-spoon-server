@@ -26,7 +26,7 @@ const getOrderById = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const user = req.user
         const { orderId } = req.params
-        const order = await OrderService.getOrderById(user?.id, orderId)
+        const order = await OrderService.getOrderById(user?.id as string, orderId as string)
         res.status(200).json(order)
     }
     catch (e) {
@@ -34,8 +34,22 @@ const getOrderById = async (req: Request, res: Response, next: NextFunction) => 
     }
 }
 
-export const orderController = {
+
+const updateOrderStatus = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { orderId } = req.params
+        const order = await OrderService.updateOrderStatus(orderId as string, req.body)
+        res.status(200).json(order)
+    }
+    catch (e) {
+        next(e)
+    }
+}
+
+
+export const OrderController = {
     createOrder,
     getMyOrders,
-    getOrderById
+    getOrderById,
+    updateOrderStatus
 }
