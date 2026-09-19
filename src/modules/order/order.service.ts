@@ -66,11 +66,25 @@ const updateOrderStatus = async (orderId: string, data: UpdateOrderStatusPayload
     return result
 }
 
+const getAllOrders = async () => {
+    const result = await prisma.order.findMany({
+        include: {
+            customer: true,
+            items: {
+                include: {
+                    meal: true
+                }
+            }
 
+        }
+    })
+    return result
+}
 
 export const OrderService = {
     createOrder,
     getMyOrders,
     getOrderById,
-    updateOrderStatus
+    updateOrderStatus,
+    getAllOrders
 }
