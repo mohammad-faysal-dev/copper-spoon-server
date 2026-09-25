@@ -37,12 +37,14 @@ const getMyOrders = async (customerId: string) => {
     return result
 }
 
-const getOrderById = async (customerId: string, orderId: string) => {
+const getOrderById = async (userId: string, orderId: string, role: string) => {
+    const where: any = { id: orderId };
+    if (role === "CUSTOMER") {
+        where.customerId = userId;
+    }
+
     const result = await prisma.order.findFirst({
-        where: {
-            customerId,
-            id: orderId
-        },
+        where,
         include: {
             items: {
                 include: {

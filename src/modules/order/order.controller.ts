@@ -26,7 +26,7 @@ const getOrderById = async (req: Request, res: Response, next: NextFunction) => 
     try {
         const user = req.user
         const { orderId } = req.params
-        const order = await OrderService.getOrderById(user?.id as string, orderId as string)
+        const order = await OrderService.getOrderById(user?.id as string, orderId as string, user?.role as string)
         res.status(200).json(order)
     }
     catch (e) {

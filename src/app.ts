@@ -22,13 +22,13 @@ app.use(
 app.all("/api/auth/*splat", toNodeHandler(auth));
 app.use(express.json());
 
-app.use("/api/users", userRouter)
-app.use("/api/provider", providerRoute)
-app.use("/api/meals", melaRoute)
-app.use("/api/category", categoryRoute)
-app.use("/api/review", reviewRouter)
-app.use("/api/roders", orderRouter)
-app.use("/api/admin", adminRoute)
+app.use("/users", userRouter)
+app.use("/provider", providerRoute)
+app.use("/meals", melaRoute)
+app.use("/category", categoryRoute)
+app.use("/review", reviewRouter)
+app.use("/orders", orderRouter)
+app.use("/admin", adminRoute)
 app.get("/", (req, res) => {
   res.send("Hello world");
 });
