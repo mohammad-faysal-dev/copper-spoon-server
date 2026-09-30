@@ -45,7 +45,7 @@ const getCategoryById = async (req: Request, res: Response, next: NextFunction) 
 const updateCategory = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { categoryId } = req.params
-        const category = await CategoryService.updateCategory(categoryId, req.body)
+        const category = await CategoryService.updateCategory(categoryId as string, req.body)
         res.status(200).json({
             success: true,
             message: "Category updated successfully",
@@ -60,7 +60,7 @@ const updateCategory = async (req: Request, res: Response, next: NextFunction) =
 const deleteCategory = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const { categoryId } = req.params
-        const category = await CategoryService.deleteCategory(categoryId)
+        const category = await CategoryService.deleteCategory(categoryId as string)
         res.status(200).json({
             success: true,
             data: category
