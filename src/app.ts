@@ -23,6 +23,10 @@ app.use(
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
+      // Allow all localhost origins for local development
+      if (/^http:\/\/localhost(:\d+)?$/.test(origin)) {
+        return callback(null, true);
+      }
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
