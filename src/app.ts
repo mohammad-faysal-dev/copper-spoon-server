@@ -12,9 +12,22 @@ import { adminRoute } from "./modules/admin/admin.route";
 
 
 const app: Application = express();
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://copper-spoon-client.vercel.app",
+  process.env.APP_URL,
+].filter(Boolean) as string[];
+
 app.use(
   cors({
-    origin: process.env.APP_URL || "http://localhost:3000",
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS policy: Origin ${origin} not allowed`), false);
+    },
     credentials: true,
   }),
 );

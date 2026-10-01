@@ -18,7 +18,11 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
-  trustedOrigins: [process.env.APP_URL!],
+  trustedOrigins: [
+    "http://localhost:3000",
+    "https://copper-spoon-client.vercel.app",
+    process.env.APP_URL!,
+  ].filter(Boolean),
   user: {
     additionalFields: {
       role: {
