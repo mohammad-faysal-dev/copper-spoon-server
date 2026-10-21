@@ -96,6 +96,26 @@ Ensure you have the following installed before proceeding:
    npm run dev
    ```
 
+## 🐳 Docker
+
+### Build the Image
+
+```bash
+docker build -t foodhub-server .
+```
+
+### Run the Container
+
+Add your environment variables in a `.env` file (`.gitignore` and `.dockerignore` already exclude it), then run:
+
+```bash
+docker run -p 5000:5000 --env-file .env foodhub-server
+```
+
+> ⚠️ Never pass real credentials via `-e` flags — they get saved in your shell history.
+
+---
+
 ## 📡 API Overview
 
 Authentication is handled via Better Auth. Requests mapped to restricted routes require a valid session context established via `/api/auth/*`.
